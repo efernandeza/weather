@@ -1,4 +1,7 @@
 <resources>
     <dimen name="container_margin_horizontal">16dp</dimen>
     <dimen name="container_margin_vertical">8dp</dimen>
+    <dimen name="card_radius">8dp</dimen>
+    <dimen name="view_vertical_space">8dp</dimen>
+    <dimen name="list_vertical_space">2dp</dimen>
 </resources>

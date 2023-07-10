@@ -20,7 +20,8 @@ class GcmLocationsService @Inject constructor(
 
 ) : LocationsService {
 
-    private val fuzedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+    private val fuzedLocationProviderClient =
+        LocationServices.getFusedLocationProviderClient(context)
 
     @SuppressLint("MissingPermission")
     override fun getCurrentLocation(locationListener: (Location) -> Unit) {
@@ -30,16 +31,19 @@ class GcmLocationsService @Inject constructor(
                 object : CancellationToken() {
                     override fun onCanceledRequested(p0: OnTokenCanceledListener) =
                         CancellationTokenSource().token
+
                     override fun isCancellationRequested(): Boolean = false
                 }
             )
             task.addOnSuccessListener { platformLocation ->
-                locationListener.invoke(
-                    Location(
-                        latitude = platformLocation.latitude,
-                        longitude = platformLocation.longitude
+                if (platformLocation != null) {
+                    locationListener.invoke(
+                        Location(
+                            latitude = platformLocation.latitude,
+                            longitude = platformLocation.longitude
+                        )
                     )
-                )
+                }
             }
         }
     }

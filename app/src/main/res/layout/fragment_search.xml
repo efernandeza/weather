@@ -4,41 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoadingFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".LoadingFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".LoadingFragment"
-        app:layout_behavior="@string/searchbar_scrolling_view_behavior">
+        app:layout_behavior="@string/searchbar_scrolling_view_behavior"
+        tools:context=".LoadingFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/container_margin_horizontal">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/container_margin_horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:cardCornerRadius="@dimen/card_radius" >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+                    android:layout_margin="@dimen/container_margin_horizontal"
+                    android:padding="@dimen/container_margin_vertical">
+
+                    <ImageView
+                        android:id="@+id/location_current_weather_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/location_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?textAppearanceHeadline6"
+                        android:layout_marginBottom="@dimen/view_vertical_space"
+                        android:gravity="start"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/location_current_weather_image"
+                        />
+
+                    <TextView
+                        android:id="@+id/location_current_temp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?textAppearanceBodyLarge"
+                        android:layout_marginVertical="@dimen/view_vertical_space"
+                        android:gravity="start"
+                        app:layout_constraintTop_toBottomOf="@id/location_name"
+                        app:layout_constraintEnd_toStartOf="@+id/location_current_weather_image"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
+
         <com.google.android.material.search.SearchBar
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/city_hint"
-            android:contentDescription="@string/search_bar_cd"/>
+            android:contentDescription="@string/search_bar_cd"
+            android:hint="@string/city_hint" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.search.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/search_view_cd"
         android:hint="@string/city_hint"
-        app:layout_anchor="@id/search_bar"
-        android:contentDescription="@string/search_view_cd">
+        app:layout_anchor="@id/search_bar">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_results_list"
             android:layout_width="match_parent"

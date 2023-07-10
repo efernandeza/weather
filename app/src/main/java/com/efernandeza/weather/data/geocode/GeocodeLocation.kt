@@ -1,4 +1,4 @@
-package com.efernandeza.weather.data
+package com.efernandeza.weather.data.geocode
 
 import com.efernandeza.weather.platform.location.Location
 
