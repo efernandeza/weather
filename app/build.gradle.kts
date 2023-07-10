@@ -50,6 +50,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
 
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
     testImplementation("junit:junit:4.13.2")
