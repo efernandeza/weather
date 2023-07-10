@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".LoadingFragment"
+    android:background="@color/white">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FirstFragment"
+        tools:context=".LoadingFragment"
         app:layout_behavior="@string/searchbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout

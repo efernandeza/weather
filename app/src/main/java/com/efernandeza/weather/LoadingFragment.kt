@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.efernandeza.weather.databinding.FragmentSecondBinding
+import com.efernandeza.weather.databinding.FragmentLoadingBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * A simple [Fragment] subclass as the default destination in the navigation.
  */
 @AndroidEntryPoint
-class SecondFragment : Fragment() {
+class LoadingFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentLoadingBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,8 +24,8 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentLoadingBinding.inflate(inflater, container, false)
         return binding.root
     }
 

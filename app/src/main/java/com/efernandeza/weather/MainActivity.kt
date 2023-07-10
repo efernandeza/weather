@@ -1,15 +1,17 @@
 package com.efernandeza.weather
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.efernandeza.weather.databinding.ActivityMainBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,13 +20,46 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    private val viewModel: MainViewModel by viewModels()
+
+    private val requestPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { _ ->
+            navigateToSearch()
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.loadingContainer.isVisible = true
+        viewModel.viewState.observe(this, ::handleViewState)
+    }
+
+    private fun handleViewState(viewState: MainViewModel.ViewState) {
+        when (viewState) {
+            MainViewModel.ViewState.NavToSearch -> navigateToSearch()
+            MainViewModel.ViewState.RequestLocationPermission -> requestLocationPermission()
+        }
+    }
+
+    private fun navigateToSearch() {
+        findNavController(R.id.nav_host_fragment_content_main)
+            .navigate(R.id.action_LoadingFragment_to_SearchFragment)
+    }
+
+    private fun requestLocationPermission() {
+        if (shouldShowRequestPermissionRationale(ACCESS_COARSE_LOCATION)) {
+            MaterialAlertDialogBuilder(this)
+                .setTitle(resources.getString(R.string.rationale_title_coarse_location))
+                .setMessage(resources.getString(R.string.rationale_msg_coarse_location))
+                .setPositiveButton(resources.getString(R.string.ok)) { _, _ ->
+                    requestPermission.launch(ACCESS_COARSE_LOCATION)
+                }
+                .show()
+        } else {
+            requestPermission.launch(ACCESS_COARSE_LOCATION)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
