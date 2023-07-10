@@ -41,7 +41,13 @@ class SearchViewModel @Inject constructor(
     }
 
     fun updateCurrentLocation(location: Location) {
-        weatherRepository.setCurrentLocation(location)
+        val disposable = weatherRepository.setCurrentLocation(location)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .onErrorComplete() // Given more time would add observability
+            .subscribe()
+
+        compositeDisposable.add(disposable)
     }
 
     override fun onCleared() {
