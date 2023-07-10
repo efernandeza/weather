@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface OpenWeatherService {
-    @GET("geo/1.0/direct")
+    @GET("geo/1.0/direct?limit=10")
     fun geocode(@Query("q") term: String): Observable<List<GeocodeResponseItem>>
 }

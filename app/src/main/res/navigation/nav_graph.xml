@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/SearchFragment"
-        android:name="com.efernandeza.weather.SearchFragment"
+        android:name="com.efernandeza.weather.search.SearchFragment"
         android:label="@string/search_fragment_label"
         tools:layout="@layout/fragment_search">
     </fragment>

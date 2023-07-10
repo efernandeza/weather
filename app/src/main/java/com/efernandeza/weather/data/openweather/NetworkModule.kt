@@ -36,7 +36,7 @@ class NetworkModule {
         converterFactory: Converter.Factory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org/data/2.5/")
+            .baseUrl("https://api.openweathermap.org/")
             .client(client)
             .addConverterFactory(converterFactory)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())

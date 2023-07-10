@@ -1,3 +1,3 @@
 <resources>
-    <dimen name="container_margin">48dp</dimen>
+    <dimen name="container_margin_horizontal">48dp</dimen>
 </resources>

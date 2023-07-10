@@ -8,5 +8,8 @@
     <string name="rationale_msg_coarse_location">Get the relevant weather for your location by granting Weather use of your devices general location.</string>
     <string name="no_thanks">No thanks</string>
     <string name="ok">OK</string>
+    <string name="city_hint">City</string>
+    <string name="search_bar_cd">A text field to enter a search term to then fetch current and forecasted weather.</string>
+    <string name="search_view_cd">Result from the term search listed here.</string>
 
 </resources>
