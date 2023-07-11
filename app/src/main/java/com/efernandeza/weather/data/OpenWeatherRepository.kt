@@ -48,7 +48,8 @@ class OpenWeatherRepository @Inject constructor(
                             currentTemp = weatherResponse.main.temp,
                             lowTemp = weatherResponse.main.temp_min,
                             highTemp = weatherResponse.main.temp_max,
-                            iconUrl = "https://openweathermap.org/img/wn/" + weather?.icon + "@4x.png"
+                            iconUrl = "https://openweathermap.org/img/wn/" + weather?.icon + "@4x.png",
+                            description = weather?.description
                         )
                     }
                 } else {

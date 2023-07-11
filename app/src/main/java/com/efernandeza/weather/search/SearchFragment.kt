@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.efernandeza.weather.R
+import com.efernandeza.weather.data.forecast.toFahrenheit
 import com.efernandeza.weather.databinding.FragmentSearchBinding
 import com.google.android.material.search.SearchView
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,7 +68,8 @@ class SearchFragment : Fragment() {
 
     private fun updateSearchResults(searchResult: SearchViewModel.ViewState.SearchResult) {
         val locations = searchResult.geocodeLocations.map {
-            val stateCountry = (it.stateCountry?.state ?: "") + " " + (it.stateCountry?.country ?: "")
+            val stateCountry =
+                (it.stateCountry?.state ?: "") + " " + (it.stateCountry?.country ?: "")
             GeocodeLocationItem(
                 name = it.name,
                 stateCountry = stateCountry.trim().ifEmpty { null },
@@ -78,14 +80,20 @@ class SearchFragment : Fragment() {
     }
 
     private fun updateWeatherRendering(viewState: SearchViewModel.ViewState.WeatherUpdate) {
-        if (binding.searchBar.isExpanding) {
-            binding.searchBar.collapse(binding.searchView)
-        }
+        binding.searchView.hide()
+
         val forecast = viewState.weatherForecast
         binding.locationName.text = forecast.name
         // TODO : Locale specific temperature rendering for degrees F or C
-        binding.locationCurrentTemp.text = resources.getString(R.string.degrees, forecast.currentTemp)
+        binding.locationCurrentTemp.text =
+            resources.getString(R.string.degrees, forecast.currentTemp?.toFahrenheit().toString())
+        binding.locationLowTemp.text =
+            resources.getString(R.string.low_temp_degrees, forecast.lowTemp?.toFahrenheit().toString())
+        binding.locationHighTemp.text =
+            resources.getString(R.string.high_temp_degrees, forecast.highTemp?.toFahrenheit().toString())
         binding.locationCurrentWeatherImage.load(forecast.iconUrl)
+        // TODO : Localize API descriptions
+        binding.locationWeatherDescription.text = forecast.description
     }
 
     override fun onDestroyView() {

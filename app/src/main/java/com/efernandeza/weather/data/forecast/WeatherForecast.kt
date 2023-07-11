@@ -8,5 +8,6 @@ data class WeatherForecast(
     val currentTemp: Double? = null,
     val lowTemp: Double? = null,
     val highTemp: Double? = null,
-    val iconUrl: String? = null
+    val iconUrl: String? = null,
+    val description: String? = null
 )

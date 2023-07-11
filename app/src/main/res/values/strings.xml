@@ -11,6 +11,8 @@
     <string name="city_hint">City</string>
     <string name="search_bar_cd">A text field to enter a search term to then fetch current and forecasted weather.</string>
     <string name="search_view_cd">Result from the term search listed here.</string>
-    <string name="degrees">%1$d°</string>
+    <string name="degrees">%1$s°</string>
+    <string name="low_temp_degrees">Low: %1$s°</string>
+    <string name="high_temp_degrees">High: %1$s°</string>
 
 </resources>
