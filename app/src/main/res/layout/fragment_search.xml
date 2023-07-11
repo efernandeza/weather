@@ -3,15 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_height="wrap_content"
     tools:context=".LoadingFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/searchbar_scrolling_view_behavior"
-        tools:context=".LoadingFragment"
         android:fillViewport="true">
 
         <LinearLayout
@@ -23,12 +21,11 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/container_horizontal_space"
+                android:layout_height="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:cardCornerRadius="@dimen/card_radius"
-                android:layout_marginTop="@dimen/view_vertical_space"
+                android:layout_margin="@dimen/view_vertical_space"
                 android:paddingHorizontal="@dimen/container_horizontal_space"
                 android:paddingBottom="@dimen/container_vertical_space">
 
@@ -48,12 +45,15 @@
 
                     <TextView
                         android:id="@+id/location_weather_description"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?textAppearanceBodyLarge"
                         app:layout_constraintTop_toBottomOf="@id/location_current_weather_image"
                         app:layout_constraintStart_toStartOf="@id/location_current_weather_image"
                         app:layout_constraintEnd_toEndOf="@id/location_current_weather_image"
+                        android:gravity="center"
+                        android:scrollHorizontally="false"
+                        android:maxLines="2"
                         />
 
                     <TextView
@@ -88,7 +88,9 @@
                         android:layout_marginVertical="@dimen/view_vertical_space"
                         android:gravity="start|center_vertical"
                         app:layout_constraintTop_toBottomOf="@id/location_current_temp"
+                        app:layout_constraintBottom_toBottomOf="@id/location_weather_description"
                         app:layout_constraintStart_toStartOf="parent"
+                        android:textColor="@color/low"
                         />
 
                     <TextView
@@ -99,7 +101,9 @@
                         android:layout_marginVertical="@dimen/view_vertical_space"
                         android:layout_marginStart="@dimen/view_horizontal_space"
                         app:layout_constraintTop_toBottomOf="@id/location_current_temp"
+                        app:layout_constraintBottom_toBottomOf="@id/location_weather_description"
                         app:layout_constraintStart_toEndOf="@id/location_low_temp"
+                        android:textColor="@color/high"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -122,7 +126,7 @@
     <com.google.android.material.search.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/search_view_cd"
         android:hint="@string/city_hint"
         app:layout_anchor="@id/search_bar">
