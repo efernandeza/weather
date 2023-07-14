@@ -1,5 +1,5 @@
 # Weather
-A basic weather app to render current and forecast weather dara provider by openweather.
+A basic weather app to render current and forecast weather data provided by openweather.
 
 # Features
 - Search for current and forecast weather by city.
